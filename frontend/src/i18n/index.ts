@@ -16,6 +16,7 @@ import("dayjs/locale/hu");
 import("dayjs/locale/is");
 import("dayjs/locale/it");
 import("dayjs/locale/ja");
+import("dayjs/locale/km");
 import("dayjs/locale/ko");
 import("dayjs/locale/lv");
 import("dayjs/locale/nb");
@@ -57,6 +58,9 @@ export function detectLocale() {
       break;
     case /^he\b/.test(locale):
       locale = "he";
+      break;
+    case /^km\b/.test(locale):
+      locale = "km";
       break;
     case /^hr\b/.test(locale):
       locale = "hr";

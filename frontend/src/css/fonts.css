@@ -243,3 +243,43 @@
 .material-icons {
   font-size: 1.5rem;
 }
+
+/* ==========================================================================
+   Offline-First Khmer Language Custom Typography (TrueType Local Configuration)
+   ========================================================================== */
+
+/* 1. Define Local Regular Weight (400) */
+@font-face {
+  font-family: "Kantumruy Pro";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local("Kantumruy Pro Regular"),
+    local("KantumruyPro-Regular"),
+    url(../assets/fonts/kantumruy/KantumruyPro-Regular.ttf) format("truetype");
+}
+
+/* 2. Define Local Bold Weight (700) */
+@font-face {
+  font-family: "Kantumruy Pro";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    local("Kantumruy Pro Bold"),
+    local("KantumruyPro-Bold"),
+    url(../assets/fonts/kantumruy/KantumruyPro-SemiBold.ttf) format("truetype");
+}
+
+/* 3. Apply the font dynamically ONLY when HTML language is switched to Khmer */
+html[lang="km"], 
+html[lang="km"] body, 
+html[lang="km"] input, 
+html[lang="km"] button, 
+html[lang="km"] select, 
+html[lang="km"] textarea {
+  font-family: 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  
+  /* Critical spacing additions for reading script sub-characters easily */
+  line-height: 1.6 !important; 
+  letter-spacing: 0.02em !important;
+}

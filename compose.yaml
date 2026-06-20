@@ -1,32 +1,39 @@
 services:
   filebrowser:
     container_name: filebrowser
-    image: filebrowser/filebrowser:latest
+    # Tells Docker to build the image using the Dockerfile in your local root directory
+    build: .
+    depends_on:
+      - redis
+    ports:
+      - "8000:80"
+    volumes:
+      - filebrowser_data:/srv
+      - filebrowser_database:/database
+      - filebrowser_config:/config
+    environment:
+      FB_REDIS_CACHE_URL: redis://default:filebrowser@redis:6379
     networks:
       - filebrowser
-    ports:
-      - 8000:80
-    volumes:
-      - filebrowser:/flux/vault
-    environment:
-      - FB_REDIS_CACHE_URL=redis://default:filebrowser@redis:6379 # Use rediss:// for ssl
 
   redis:
     container_name: redis
     image: redis:latest
-    networks:
-      - filebrowser
     command:
       - sh
       - -c
       - |
-        cat > /tmp/users.acl <<EOF
+        cat > /tmp/users.acl <<'EOF'
         user default on >filebrowser ~* +@all
         EOF
-        redis-server --aclfile /tmp/users.acl
+        exec redis-server --aclfile /tmp/users.acl
+    networks:
+      - filebrowser
 
 networks:
   filebrowser:
 
 volumes:
-  filebrowser:
+  filebrowser_data:
+  filebrowser_database:
+  filebrowser_config:

@@ -30,6 +30,7 @@ export default {
       is: "Icelandic",
       it: "Italiano",
       ja: "日本語",
+      km: "ភាសាខ្មែរ",
       ko: "한국어",
       no: "Norsk",
       nl: "Nederlands (Nederland)",
