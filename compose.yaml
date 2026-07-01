@@ -3,6 +3,7 @@ services:
     container_name: filebrowser
     # Tells Docker to build the image using the Dockerfile in your local root directory
     build: .
+    restart: unless-stopped
     depends_on:
       - redis
     ports:
@@ -19,6 +20,7 @@ services:
   redis:
     container_name: redis
     image: redis:latest
+    restart: unless-stopped
     command:
       - sh
       - -c
