@@ -13,8 +13,8 @@ services:
       - filebrowser_database:/database
       - filebrowser_config:/config
     environment:
-      - FB_TOKEN_EXPIRATION_TIME : "87600h"
-      - FB_REDIS_CACHE_URL: redis://default:filebrowser@redis:6379
+      - FB_TOKEN_EXPIRATION_TIME=87600h
+      - FB_REDIS_CACHE_URL=redis://default:filebrowser@redis:6379
     networks:
       - filebrowser
 
