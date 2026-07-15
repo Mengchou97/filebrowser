@@ -461,3 +461,13 @@ html[dir="rtl"] .card.floating .card-content .file-list {
   direction: ltr;
   text-align: left;
 }
+
+/* Force iOS Safari to scroll multi-page PDFs smoothly inside the preview block */
+.preview .pdf-container, 
+.preview iframe {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
