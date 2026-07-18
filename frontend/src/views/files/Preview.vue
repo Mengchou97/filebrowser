@@ -124,7 +124,54 @@
           :options="videoOptions"
         >
         </VideoPlayer>
-        <object v-else-if="isPdf" class="pdf" :data="previewUrl"></object>
+        <template v-else-if="isPdf">
+          <!-- Catch all mobile browsers (iOS Safari, Android Chrome, Samsung Internet) -->
+          <div
+            v-if="isMobile"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+              text-align: center;
+              padding: 2rem;
+            "
+          >
+            <div>
+              <i
+                class="material-icons"
+                style="font-size: 4rem; color: var(--blue)"
+                >picture_as_pdf</i
+              >
+              <div style="font-size: 1.2rem; margin: 1rem 0">{{ name }}</div>
+              <p style="color: var(--textSecondary); margin-bottom: 1.5rem">
+                Mobile devices require documents to open directly for proper
+                layout rendering.
+              </p>
+              <a
+                :href="previewUrl"
+                target="_blank"
+                class="button button--flat"
+                style="
+                  background-color: var(--blue) !important;
+                  color: white !important;
+                  padding: 0.6rem 1.5rem;
+                  border-radius: 4px;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                "
+              >
+                <i class="material-icons">open_in_new</i>
+                Open Document
+              </a>
+            </div>
+          </div>
+
+          <!-- Keep standard embedded object viewer running flawlessly for all desktop PCs -->
+          <object v-else class="pdf" :data="previewUrl"></object>
+        </template>
         <div v-else-if="fileStore.req?.type == 'blob'" class="info">
           <div class="title">
             <i class="material-icons">feedback</i>
@@ -200,6 +247,15 @@ import { useRoute, useRouter } from "vue-router";
 import type { Rendition } from "epubjs";
 import { getTheme } from "@/utils/theme";
 import { useI18n } from "vue-i18n";
+// Add this environment property check right here:
+const isMobile = computed(() => {
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    ) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) // Modern iPadOS tracking
+  );
+});
 
 // CSV file size limit for preview (5MB)
 // Prevents browser memory issues with large files
