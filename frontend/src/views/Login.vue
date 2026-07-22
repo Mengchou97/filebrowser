@@ -1,7 +1,7 @@
 <template>
   <div id="login" :class="{ recaptcha: recaptcha }">
     <form @submit="submit">
-      <img :src="logoURL" alt="File Browser" />
+      <img :src="logoURL" alt="File Browser"/>
       <h1>{{ name }}</h1>
       <p v-if="reason != null" class="logout-message">
         {{ t(`login.logout_reasons.${reason}`) }}
@@ -36,6 +36,7 @@
         type="submit"
         :value="createMode ? t('login.signup') : t('login.submit')"
       />
+      <p id="credit">File Browser | SIL | CLO | DNFE</p>
 
       <p @click="toggleMode" v-if="signup">
         {{ createMode ? t("login.loginInstead") : t("login.createAnAccount") }}

@@ -1,5 +1,5 @@
 ## Stage 1: Build the Vue Frontend using pnpm
-FROM node:20-alpine AS frontend-builder
+FROM node:24-alpine AS frontend-builder
 WORKDIR /src
 
 # Enable corepack to handle pnpm natively

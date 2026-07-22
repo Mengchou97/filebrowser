@@ -146,10 +146,10 @@ export function detectLocale() {
       break;
 
     default:
-      locale = "en";
+      locale = "km";
   }
 
-  return locale;
+  return "km";
 }
 
 // TODO: was this really necessary?
@@ -169,7 +169,7 @@ export const rtlLanguages = ["he", "ar"];
 
 export const i18n = createI18n({
   locale: detectLocale(),
-  fallbackLocale: "en",
+  fallbackLocale: "km",
   messages,
   // expose i18n.global for outside components
   legacy: true,

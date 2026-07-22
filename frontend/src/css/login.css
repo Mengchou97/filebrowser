@@ -8,15 +8,21 @@
 }
 
 #login img {
-  width: 4em;
-  height: 4em;
+  width: 50%;
+  height: auto;
   margin: 0 auto;
   display: block;
 }
 
 #login h1 {
   text-align: center;
-  font-size: 2.5em;
+  font-size: 2em;
+  margin: 0.4em 0 0.67em;
+}
+
+#login #credit {
+  text-align: center;
+  font-size: 0.8em;
   margin: 0.4em 0 0.67em;
 }
 
