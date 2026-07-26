@@ -42,7 +42,8 @@ import messages from "@intlify/unplugin-vue-i18n/messages";
 export function detectLocale() {
   // locale is an RFC 5646 language tag
   // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language
-  let locale = navigator.language.toLowerCase();
+  // let locale = navigator.language.toLowerCase();
+  let locale = "km"; // Default locale
   switch (true) {
     case /^ar\b/.test(locale):
       locale = "ar";
