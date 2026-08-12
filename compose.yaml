@@ -14,6 +14,7 @@ services:
       - filebrowser_config:/config
     environment:
       - FB_TOKEN_EXPIRATION_TIME=876000h
+      - FB_KEY=dglibrary_pi_secret_key_998877
       - FB_REDIS_CACHE_URL=redis://default:filebrowser@redis:6379
     networks:
       - filebrowser
